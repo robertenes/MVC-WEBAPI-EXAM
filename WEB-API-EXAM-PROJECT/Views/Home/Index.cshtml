@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WEB_API_EXAM_PROJECT.Models.ExamClass>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<h2>Welcome To Exam WTIH WEB API</h2>
+<hr />
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ID) )&nbsp; @Html.DisplayFor(modelItem => item.Q)</td>
+            
+        </tr>
+        <tr>
+            <td>
+                <input id="Answer1" type="radio" class="radiob" name="@item.ID" value="@item.A1" /> @item.A1 <br />
+                <input id="Answer2" type="radio" class="radiob" name="@item.ID" value="@item.A2" /> @item.A2 <br />
+           
+                <input id="Answer3" type="radio" class="radiob" name="@item.ID" value="@item.A3" /> @item.A3 <br />
+                <input id="Answer4" type="radio" class="radiob" name="@item.ID" value="@item.A4" /> @item.A4 <br />
+                <label id="CorrectAnswer" name="@item.ID" class="radiob" style="display:none">Correct Answer is: @item.CORRECT_ANSWER</label>
+            </td>
+        </tr>
+
+
+    }
+</table>
+<button type="submit" id="Button1" onclick="displayResult()">Submit</button>
+
+<hr />
+<label id="ResultLabel"></label>
+
+<script>
+    $(document).ready(function () {
+        $("#Button1").click(function () {
+            $(".radiob").show();
+            $('input').attr("enabled", false);
+        });
+        
+    })
+    function displayResult() {
+
+        document.getElementById("ResultLabel").innerHTML = "";
+
+        var e = document.getElementsByTagName('input');
+
+        for (var i = 0; i < e.length; i++) {
+            if (e[i].type == "radio") {
+                if (e[i].checked == true) {
+                    document.getElementById("ResultLabel").innerHTML += "Q" + e[i].name + "Your Answer is:" + e[i].value + "<br/>";
+                }
+            }
+        }
+    }
+</script>

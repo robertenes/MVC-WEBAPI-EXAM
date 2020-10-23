@@ -1,0 +1,1 @@
+Bu projede online sınav olup sınav sorularını ve şıklarını veri tabanında WEBAPI kullanılarak çekilmiştir. Kullanıcı sınavı bitirip submit yapıldığında ise işaretlenen şıklar ve doğru cevaplar JQUERY ile ekrana yazılır.
